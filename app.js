@@ -6,9 +6,11 @@ const passport = require("passport");
 const User = require("./Models/User");
 const jwt = require("jsonwebtoken");
 
+const app = express();
+app.use(cors());
+
 require("./passport");
 
-const app = express();
 const port = 3009;
 
 genToken = (user) => {
@@ -39,7 +41,7 @@ db.once("open", () => {
   console.log("Database connected");
 });
 
-app.get("/", (req, res) => res.send("Hello World!"));
+// ROUTES
 
 app.post("/register", async function (req, res, next) {
   const { name, email, password } = req.body;
